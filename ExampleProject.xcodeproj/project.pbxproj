@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		976F596D6D1941C5B6E367B0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BAF18153C64DAD84B3582E /* libPods.a */; };
 		C47DF61518C648740078A8C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47DF61418C648740078A8C6 /* Foundation.framework */; };
 		C47DF61718C648750078A8C6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47DF61618C648750078A8C6 /* CoreGraphics.framework */; };
 		C47DF61918C648750078A8C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47DF61818C648750078A8C6 /* UIKit.framework */; };
@@ -21,6 +22,8 @@
 		C47DF63618C648750078A8C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47DF61818C648750078A8C6 /* UIKit.framework */; };
 		C47DF63E18C648750078A8C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C47DF63C18C648750078A8C6 /* InfoPlist.strings */; };
 		C47DF64018C648750078A8C6 /* ExampleProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF63F18C648750078A8C6 /* ExampleProjectTests.m */; };
+		C47DF66918C665450078A8C6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF66818C665450078A8C6 /* LoginViewController.m */; };
+		C47DF66B18C6675D0078A8C6 /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF66A18C6675D0078A8C6 /* LoginViewControllerTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20552B5FDDFA4FFDB6D2277F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		B1BAF18153C64DAD84B3582E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C47DF61118C648740078A8C6 /* ExampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C47DF61418C648740078A8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C47DF61618C648750078A8C6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +58,9 @@
 		C47DF63B18C648750078A8C6 /* ExampleProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExampleProjectTests-Info.plist"; sourceTree = "<group>"; };
 		C47DF63D18C648750078A8C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C47DF63F18C648750078A8C6 /* ExampleProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleProjectTests.m; sourceTree = "<group>"; };
+		C47DF66718C665450078A8C6 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C47DF66818C665450078A8C6 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C47DF66A18C6675D0078A8C6 /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,7 @@
 				C47DF61718C648750078A8C6 /* CoreGraphics.framework in Frameworks */,
 				C47DF61918C648750078A8C6 /* UIKit.framework in Frameworks */,
 				C47DF61518C648740078A8C6 /* Foundation.framework in Frameworks */,
+				976F596D6D1941C5B6E367B0 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +95,7 @@
 				C47DF63918C648750078A8C6 /* ExampleProjectTests */,
 				C47DF61318C648740078A8C6 /* Frameworks */,
 				C47DF61218C648740078A8C6 /* Products */,
+				20552B5FDDFA4FFDB6D2277F /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +115,7 @@
 				C47DF61618C648750078A8C6 /* CoreGraphics.framework */,
 				C47DF61818C648750078A8C6 /* UIKit.framework */,
 				C47DF63318C648750078A8C6 /* XCTest.framework */,
+				B1BAF18153C64DAD84B3582E /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,6 +128,8 @@
 				C47DF62618C648750078A8C6 /* Main.storyboard */,
 				C47DF62918C648750078A8C6 /* ViewController.h */,
 				C47DF62A18C648750078A8C6 /* ViewController.m */,
+				C47DF66718C665450078A8C6 /* LoginViewController.h */,
+				C47DF66818C665450078A8C6 /* LoginViewController.m */,
 				C47DF62C18C648750078A8C6 /* Images.xcassets */,
 				C47DF61B18C648750078A8C6 /* Supporting Files */,
 			);
@@ -138,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				C47DF63F18C648750078A8C6 /* ExampleProjectTests.m */,
+				C47DF66A18C6675D0078A8C6 /* LoginViewControllerTests.m */,
 				C47DF63A18C648750078A8C6 /* Supporting Files */,
 			);
 			path = ExampleProjectTests;
@@ -159,9 +173,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C47DF64318C648750078A8C6 /* Build configuration list for PBXNativeTarget "ExampleProject" */;
 			buildPhases = (
+				99D42C11D36E4161ABE58CF2 /* Check Pods Manifest.lock */,
 				C47DF60D18C648740078A8C6 /* Sources */,
 				C47DF60E18C648740078A8C6 /* Frameworks */,
 				C47DF60F18C648740078A8C6 /* Resources */,
+				ACCFC1E0C74740AB9229F924 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -244,11 +260,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		99D42C11D36E4161ABE58CF2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ACCFC1E0C74740AB9229F924 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C47DF60D18C648740078A8C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C47DF66918C665450078A8C6 /* LoginViewController.m in Sources */,
 				C47DF62B18C648750078A8C6 /* ViewController.m in Sources */,
 				C47DF62518C648750078A8C6 /* AppDelegate.m in Sources */,
 				C47DF62118C648750078A8C6 /* main.m in Sources */,
@@ -259,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C47DF66B18C6675D0078A8C6 /* LoginViewControllerTests.m in Sources */,
 				C47DF64018C648750078A8C6 /* ExampleProjectTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +426,7 @@
 		};
 		C47DF64418C648750078A8C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20552B5FDDFA4FFDB6D2277F /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -388,6 +440,7 @@
 		};
 		C47DF64518C648750078A8C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20552B5FDDFA4FFDB6D2277F /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -460,6 +513,7 @@
 				C47DF64518C648750078A8C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C47DF64618C648750078A8C6 /* Build configuration list for PBXNativeTarget "ExampleProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +522,7 @@
 				C47DF64818C648750078A8C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
