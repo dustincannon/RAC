@@ -10,7 +10,6 @@
 #import <ReactiveCocoa.h>
 
 @interface LoginViewController ()
-
 @end
 
 @implementation LoginViewController

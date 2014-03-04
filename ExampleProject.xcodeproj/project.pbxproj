@@ -24,6 +24,7 @@
 		C47DF64018C648750078A8C6 /* ExampleProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF63F18C648750078A8C6 /* ExampleProjectTests.m */; };
 		C47DF66918C665450078A8C6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF66818C665450078A8C6 /* LoginViewController.m */; };
 		C47DF66B18C6675D0078A8C6 /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF66A18C6675D0078A8C6 /* LoginViewControllerTests.m */; };
+		C47DF66C18C67B5B0078A8C6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF66818C665450078A8C6 /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,10 @@
 		C47DF66718C665450078A8C6 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C47DF66818C665450078A8C6 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C47DF66A18C6675D0078A8C6 /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
+		C47DF66D18C67E3F0078A8C6 /* libPods-ReactiveCocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ReactiveCocoa.a"; path = "Pods/build/Debug-iphoneos/libPods-ReactiveCocoa.a"; sourceTree = "<group>"; };
+		C47DF66F18C67E660078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		C47DF67318C680E90078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		C47DF67518C683140078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +116,10 @@
 		C47DF61318C648740078A8C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C47DF67518C683140078A8C6 /* libPods.a */,
+				C47DF67318C680E90078A8C6 /* libPods.a */,
+				C47DF66F18C67E660078A8C6 /* libPods.a */,
+				C47DF66D18C67E3F0078A8C6 /* libPods-ReactiveCocoa.a */,
 				C47DF61418C648740078A8C6 /* Foundation.framework */,
 				C47DF61618C648750078A8C6 /* CoreGraphics.framework */,
 				C47DF61818C648750078A8C6 /* UIKit.framework */,
@@ -311,6 +320,7 @@
 			files = (
 				C47DF66B18C6675D0078A8C6 /* LoginViewControllerTests.m in Sources */,
 				C47DF64018C648750078A8C6 /* ExampleProjectTests.m in Sources */,
+				C47DF66C18C67B5B0078A8C6 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +464,7 @@
 		};
 		C47DF64718C648750078A8C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20552B5FDDFA4FFDB6D2277F /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ExampleProject.app/ExampleProject";
@@ -477,6 +488,7 @@
 		};
 		C47DF64818C648750078A8C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20552B5FDDFA4FFDB6D2277F /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ExampleProject.app/ExampleProject";

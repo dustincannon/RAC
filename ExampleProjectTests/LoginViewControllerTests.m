@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "LoginViewController.h"
 
 @interface LoginViewControllerTests : XCTestCase
 
@@ -28,7 +29,8 @@
 
 - (void)testLoginButtonIsDisabledUntilBothFieldsHaveText
 {
-    
+    LoginViewController *loginVC = [LoginViewController new];
+    NSLog(@"loginVC.signInButton: %@", loginVC.signInButton);
 }
 
 @end
