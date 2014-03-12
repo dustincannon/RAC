@@ -27,10 +27,4 @@
     [super tearDown];
 }
 
-- (void)testLoginButtonIsDisabledUntilBothFieldsHaveText
-{
-    LoginViewController *loginVC = [LoginViewController new];
-    NSLog(@"loginVC.signInButton: %@", loginVC.signInButton);
-}
-
 @end
