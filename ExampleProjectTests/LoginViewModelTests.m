@@ -34,11 +34,7 @@
 {
     self.viewModel.email = @"email";
     self.viewModel.password = @"password";
-
-    [RACObserve(self.viewModel, loginEnabled) subscribeNext:^(id x) {
-        NSLog(@"(%@)", [x boolValue] ? @"VALID" : @"INVALID");
-        XCTAssertEqual([x boolValue], YES, @"");
-    }];
+    XCTAssertEqual(self.viewModel.loginEnabled, YES, @"");
 }
 
 - (void)testAuthetication
