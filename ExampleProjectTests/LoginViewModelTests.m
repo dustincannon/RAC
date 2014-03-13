@@ -35,7 +35,7 @@
     self.viewModel.email = @"email";
     self.viewModel.password = @"password";
 
-    [RACObserve(self.viewModel, formIsValid) subscribeNext:^(id x) {
+    [RACObserve(self.viewModel, loginEnabled) subscribeNext:^(id x) {
         NSLog(@"(%@)", [x boolValue] ? @"VALID" : @"INVALID");
         XCTAssertEqual([x boolValue], YES, @"");
     }];
@@ -45,7 +45,7 @@
 {
     self.viewModel.email = @"dustin";
     self.viewModel.password = @"test123";
-    self.viewModel.formIsValid = YES;
+    self.viewModel.loginEnabled = YES;
     
     [[self.viewModel.loginCommand execute:nil] asynchronouslyWaitUntilCompleted:nil];
     XCTAssertEqual(self.viewModel.loginSuccessful, YES, @"");
