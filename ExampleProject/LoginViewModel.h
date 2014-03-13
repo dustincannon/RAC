@@ -16,4 +16,6 @@
 @property (strong, nonatomic) NSString *password;
 @property (assign, nonatomic) BOOL formIsValid;
 
+- (BOOL)authenticate;
+
 @end

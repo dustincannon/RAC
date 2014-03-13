@@ -29,16 +29,23 @@
     return self;
 }
 
-//
+- (BOOL)authenticate
+{
+    if ([self.email isEqualToString:@"dustin"] && [self.password isEqualToString:@"test123"]) {
+        return YES;
+    }
+    return NO;
+}
+
 //- (void)setEmail:(NSString *)email
 //{
-////    NSLog(@"email: %@", email);
+//    NSLog(@"email: %@", email);
 //    _email = email;
 //}
 //
 //- (void)setPassword:(NSString *)password
 //{
-////    NSLog(@"password: %@", password);
+//    NSLog(@"password: %@", password);
 //    _password = password;
 //}
 
