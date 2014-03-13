@@ -20,7 +20,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        //self.viewModel = [LoginViewModel new];
+        self.viewModel = [LoginViewModel new];
     }
     return self;
 }
@@ -31,20 +31,32 @@
 	// Do any additional setup after loading the view.
     
     @weakify(self);
-    
     RAC(self.emailField, text) = RACObserve(self.viewModel, email);
     [self.emailField.rac_textSignal subscribeNext:^(NSString *email) {
         @strongify(self);
+        self.statusLabel.hidden = YES;
         self.viewModel.email = email;
     }];
     
     RAC(self.passwordField, text) = RACObserve(self.viewModel, password);
     [self.passwordField.rac_textSignal subscribeNext:^(NSString *password) {
         @strongify(self);
+        self.statusLabel.hidden = YES;
         self.viewModel.password = password;
     }];
+
+    self.signInButton.rac_command = self.viewModel.loginCommand;
     
-    RAC(self.signInButton, enabled) = RACObserve(self.viewModel, formIsValid);
+    [[RACObserve(self.viewModel, loginSuccessful) skip:1] subscribeNext:^(id x) {
+        @strongify(self);
+        self.statusLabel.hidden = NO;
+        BOOL success = [x boolValue];
+        if (success) {
+            self.statusLabel.text = @"Success!";
+        } else {
+            self.statusLabel.text = @"Fail!";
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning

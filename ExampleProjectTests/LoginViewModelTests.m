@@ -35,10 +35,20 @@
     self.viewModel.email = @"email";
     self.viewModel.password = @"password";
 
-    [[RACObserve(self.viewModel, formIsValid) skip:2] subscribeNext:^(id x) {
+    [RACObserve(self.viewModel, formIsValid) subscribeNext:^(id x) {
         NSLog(@"(%@)", [x boolValue] ? @"VALID" : @"INVALID");
-        XCTAssert([x boolValue] == YES, @"");
+        XCTAssertEqual([x boolValue], YES, @"");
     }];
+}
+
+- (void)testAuthetication
+{
+    self.viewModel.email = @"dustin";
+    self.viewModel.password = @"test123";
+    self.viewModel.formIsValid = YES;
+    
+    [[self.viewModel.loginCommand execute:nil] asynchronouslyWaitUntilCompleted:nil];
+    XCTAssertEqual(self.viewModel.loginSuccessful, YES, @"");
 }
 
 @end

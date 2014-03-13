@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @class RACSignal;
+@class RACCommand;
 
 @interface LoginViewModel : NSObject
 
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *password;
-@property (assign, nonatomic) BOOL formIsValid;
-
-- (BOOL)authenticate;
+@property (strong, nonatomic) RACCommand *loginCommand;
+@property (assign, nonatomic) BOOL loginSuccessful;
 
 @end
