@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		976F596D6D1941C5B6E367B0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BAF18153C64DAD84B3582E /* libPods.a */; };
+		C46636E918D108EF00A7F768 /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C46636E818D108EF00A7F768 /* LoginViewModel.m */; };
+		C46636EA18D108EF00A7F768 /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C46636E818D108EF00A7F768 /* LoginViewModel.m */; };
+		C46636EC18D120CA00A7F768 /* LoginViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46636EB18D120CA00A7F768 /* LoginViewModelTests.m */; };
 		C47DF61518C648740078A8C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47DF61418C648740078A8C6 /* Foundation.framework */; };
 		C47DF61718C648750078A8C6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47DF61618C648750078A8C6 /* CoreGraphics.framework */; };
 		C47DF61918C648750078A8C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47DF61818C648750078A8C6 /* UIKit.framework */; };
@@ -21,10 +24,7 @@
 		C47DF63518C648750078A8C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47DF61418C648740078A8C6 /* Foundation.framework */; };
 		C47DF63618C648750078A8C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47DF61818C648750078A8C6 /* UIKit.framework */; };
 		C47DF63E18C648750078A8C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C47DF63C18C648750078A8C6 /* InfoPlist.strings */; };
-		C47DF64018C648750078A8C6 /* ExampleProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF63F18C648750078A8C6 /* ExampleProjectTests.m */; };
 		C47DF66918C665450078A8C6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF66818C665450078A8C6 /* LoginViewController.m */; };
-		C47DF66B18C6675D0078A8C6 /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF66A18C6675D0078A8C6 /* LoginViewControllerTests.m */; };
-		C47DF66C18C67B5B0078A8C6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF66818C665450078A8C6 /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +40,9 @@
 /* Begin PBXFileReference section */
 		20552B5FDDFA4FFDB6D2277F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B1BAF18153C64DAD84B3582E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C46636E718D108EF00A7F768 /* LoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
+		C46636E818D108EF00A7F768 /* LoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModel.m; sourceTree = "<group>"; };
+		C46636EB18D120CA00A7F768 /* LoginViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModelTests.m; sourceTree = "<group>"; };
 		C47DF61118C648740078A8C6 /* ExampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C47DF61418C648740078A8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C47DF61618C648750078A8C6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,14 +61,12 @@
 		C47DF63318C648750078A8C6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C47DF63B18C648750078A8C6 /* ExampleProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExampleProjectTests-Info.plist"; sourceTree = "<group>"; };
 		C47DF63D18C648750078A8C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C47DF63F18C648750078A8C6 /* ExampleProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleProjectTests.m; sourceTree = "<group>"; };
 		C47DF66718C665450078A8C6 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C47DF66818C665450078A8C6 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		C47DF66A18C6675D0078A8C6 /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
 		C47DF66D18C67E3F0078A8C6 /* libPods-ReactiveCocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ReactiveCocoa.a"; path = "Pods/build/Debug-iphoneos/libPods-ReactiveCocoa.a"; sourceTree = "<group>"; };
 		C47DF66F18C67E660078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		C47DF67318C680E90078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
-		C47DF67518C683140078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		C47DF67518C683140078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +140,8 @@
 				C47DF62A18C648750078A8C6 /* ViewController.m */,
 				C47DF66718C665450078A8C6 /* LoginViewController.h */,
 				C47DF66818C665450078A8C6 /* LoginViewController.m */,
+				C46636E718D108EF00A7F768 /* LoginViewModel.h */,
+				C46636E818D108EF00A7F768 /* LoginViewModel.m */,
 				C47DF62C18C648750078A8C6 /* Images.xcassets */,
 				C47DF61B18C648750078A8C6 /* Supporting Files */,
 			);
@@ -159,8 +162,7 @@
 		C47DF63918C648750078A8C6 /* ExampleProjectTests */ = {
 			isa = PBXGroup;
 			children = (
-				C47DF63F18C648750078A8C6 /* ExampleProjectTests.m */,
-				C47DF66A18C6675D0078A8C6 /* LoginViewControllerTests.m */,
+				C46636EB18D120CA00A7F768 /* LoginViewModelTests.m */,
 				C47DF63A18C648750078A8C6 /* Supporting Files */,
 			);
 			path = ExampleProjectTests;
@@ -310,6 +312,7 @@
 				C47DF66918C665450078A8C6 /* LoginViewController.m in Sources */,
 				C47DF62B18C648750078A8C6 /* ViewController.m in Sources */,
 				C47DF62518C648750078A8C6 /* AppDelegate.m in Sources */,
+				C46636E918D108EF00A7F768 /* LoginViewModel.m in Sources */,
 				C47DF62118C648750078A8C6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,9 +321,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C47DF66B18C6675D0078A8C6 /* LoginViewControllerTests.m in Sources */,
-				C47DF64018C648750078A8C6 /* ExampleProjectTests.m in Sources */,
-				C47DF66C18C67B5B0078A8C6 /* LoginViewController.m in Sources */,
+				C46636EA18D108EF00A7F768 /* LoginViewModel.m in Sources */,
+				C46636EC18D120CA00A7F768 /* LoginViewModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
