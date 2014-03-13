@@ -10,6 +10,10 @@
 #import <ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
+@interface LoginViewModel ()
+@property (assign, nonatomic) BOOL loginEnabled;
+@end
+
 @implementation LoginViewModel
 
 - (id)init
@@ -19,22 +23,33 @@
         RACSignal *emailSignal = RACObserve(self, email);
         RACSignal *passwordSignal = RACObserve(self, password);
 
-        RAC(self, formIsValid) = [RACSignal combineLatest:@[emailSignal, passwordSignal] reduce:^id(NSString *email, NSString *password){
+        @weakify(self);
+        RAC(self, loginEnabled) = [RACSignal combineLatest:@[emailSignal, passwordSignal] reduce:^id(NSString *email, NSString *password){
             if (([email length] > 0) && ([password length] > 0)) {
                 return @(YES);
             }
             return @(NO);
         }];
+
+        _loginCommand = [[RACCommand alloc] initWithEnabled:RACObserve(self, loginEnabled) signalBlock:^RACSignal *(id input) {
+            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                @strongify(self);
+                if ([self.email isEqualToString:@"dustin"] && [self.password isEqualToString:@"test123"]) {
+                    NSLog(@"Login Successful");
+                    self.loginSuccessful = YES;
+                } else {
+                    NSLog(@"Login Failed");
+                    self.loginSuccessful = NO;
+                }
+                
+                [subscriber sendCompleted];
+
+                return nil;
+            }];
+;
+        }];
     }
     return self;
-}
-
-- (BOOL)authenticate
-{
-    if ([self.email isEqualToString:@"dustin"] && [self.password isEqualToString:@"test123"]) {
-        return YES;
-    }
-    return NO;
 }
 
 //- (void)setEmail:(NSString *)email
