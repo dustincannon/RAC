@@ -10,10 +10,6 @@
 #import <ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
-@interface LoginViewModel ()
-@property (assign, nonatomic) BOOL loginEnabled;
-@end
-
 @implementation LoginViewModel
 
 - (id)init

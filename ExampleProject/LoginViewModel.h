@@ -17,5 +17,6 @@
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) RACCommand *loginCommand;
 @property (assign, nonatomic) BOOL loginSuccessful;
+@property (assign, nonatomic) BOOL loginEnabled;
 
 @end
