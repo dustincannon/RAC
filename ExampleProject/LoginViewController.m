@@ -9,25 +9,18 @@
 #import "LoginViewController.h"
 #import <ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
+#import "LoginViewModel.h"
 
 @interface LoginViewController ()
 @end
 
 @implementation LoginViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        //self.viewModel = [LoginViewModel new];
     }
     return self;
 }
@@ -39,40 +32,30 @@
     
     @weakify(self);
 
-    // When the login signal executes we authenticate
-    RACSignal *loginSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    [self.emailField.rac_textSignal subscribeNext:^(NSString *email) {
         @strongify(self);
-        if ([self.emailField.text isEqualToString:@"dustin"] && [self.passwordField.text isEqualToString:@"test123"]) {
+        self.statusLabel.hidden = YES;
+        self.viewModel.email = email;
+    }];
+    
+    [self.passwordField.rac_textSignal subscribeNext:^(NSString *password) {
+        @strongify(self);
+        self.statusLabel.hidden = YES;
+        self.viewModel.password = password;
+    }];
+
+    self.signInButton.rac_command = self.viewModel.loginCommand;
+    
+    [[RACObserve(self.viewModel, loginSuccessful) skip:1] subscribeNext:^(id x) {
+        @strongify(self);
+        self.statusLabel.hidden = NO;
+        BOOL success = [x boolValue];
+        if (success) {
             self.statusLabel.text = @"Success!";
         } else {
-            self.statusLabel.text = @"Failed :(";
+            self.statusLabel.text = @"Fail!";
         }
-        self.statusLabel.hidden = NO;
-        [subscriber sendCompleted];
-        
-        return [RACDisposable disposableWithBlock:^{
-            NSLog(@"Done with login");
-        }];
     }];
-    
-    // Enable signInButton if forms are valid
-    RACSignal *formValid = [RACSignal combineLatest:@[self.emailField.rac_textSignal, self.passwordField.rac_textSignal]
-                                             reduce:^id (NSString *email, NSString *password) {
-                                                 @strongify(self);
-                                                 self.statusLabel.hidden = YES;
-                                                 if (email.length > 0 && password.length > 0) {
-                                                     return @(YES);
-                                                 }
-                                                 return @(NO);
-                                             }];
-    
-    // Authenticate if signInButton is tapped
-    RACCommand *loginCommand = [[RACCommand alloc] initWithEnabled:formValid signalBlock:^RACSignal *(id input) {
-        NSLog(@"Login Attempt!");
-        return loginSignal;
-    }];
-    
-    self.signInButton.rac_command = loginCommand;
 }
 
 - (void)didReceiveMemoryWarning
