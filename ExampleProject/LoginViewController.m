@@ -59,12 +59,11 @@
     RACSignal *formValid = [RACSignal combineLatest:@[self.emailField.rac_textSignal, self.passwordField.rac_textSignal]
                                              reduce:^id (NSString *email, NSString *password) {
                                                  @strongify(self);
-                                                 BOOL valid = NO;
                                                  self.statusLabel.hidden = YES;
                                                  if (email.length > 0 && password.length > 0) {
-                                                     valid = YES;
+                                                     return @(YES);
                                                  }
-                                                 return @(valid);
+                                                 return @(NO);
                                              }];
     
     // Authenticate if signInButton is tapped
