@@ -43,12 +43,12 @@
     RACSignal *loginSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
         if ([self.emailField.text isEqualToString:@"dustin"] && [self.passwordField.text isEqualToString:@"test123"]) {
-            [subscriber sendNext:@(YES)];
-            [subscriber sendCompleted];
+            self.statusLabel.text = @"Success!";
         } else {
-            [subscriber sendNext:@(NO)];
-            [subscriber sendCompleted];
+            self.statusLabel.text = @"Failed :(";
         }
+        self.statusLabel.hidden = NO;
+        [subscriber sendCompleted];
         
         return [RACDisposable disposableWithBlock:^{
             NSLog(@"Done with login");
@@ -71,25 +71,6 @@
     RACCommand *loginCommand = [[RACCommand alloc] initWithEnabled:formValid signalBlock:^RACSignal *(id input) {
         NSLog(@"Login Attempt!");
         return loginSignal;
-    }];
-
-    // Subscribe to the execution of the login command which is executed when we hit the signInButton
-    [[loginCommand executionSignals] subscribeNext:^(id loginSignal) {
-        
-        // When the signInButton is tapped we re-subscribe to the login signal that is sent when we authenticate
-        [loginSignal subscribeNext:^(id loginResult) {
-            @strongify(self);
-            NSLog(@"next: %@", loginResult);
-            BOOL loginSuccessful = [loginResult boolValue];
-            if (loginSuccessful) {
-                self.statusLabel.text = @"Success!";
-            } else {
-                self.statusLabel.text = @"Failed :(";
-            }
-            self.statusLabel.hidden = NO;
-        } completed:^{
-            NSLog(@"login signal complete");
-        }];
     }];
     
     self.signInButton.rac_command = loginCommand;
