@@ -24,6 +24,8 @@
 		C47DF63618C648750078A8C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47DF61818C648750078A8C6 /* UIKit.framework */; };
 		C47DF63E18C648750078A8C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C47DF63C18C648750078A8C6 /* InfoPlist.strings */; };
 		C47DF66918C665450078A8C6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF66818C665450078A8C6 /* LoginViewController.m */; };
+		C4A6D23218D8F885007C8A8E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A6D23118D8F885007C8A8E /* PhotoViewController.m */; };
+		C4A6D23518D90057007C8A8E /* PhotoCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A6D23418D90057007C8A8E /* PhotoCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,10 @@
 		C47DF66F18C67E660078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		C47DF67318C680E90078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		C47DF67518C683140078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		C4A6D23018D8F885007C8A8E /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		C4A6D23118D8F885007C8A8E /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		C4A6D23318D90057007C8A8E /* PhotoCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewController.h; sourceTree = "<group>"; };
+		C4A6D23418D90057007C8A8E /* PhotoCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +143,10 @@
 				C47DF66818C665450078A8C6 /* LoginViewController.m */,
 				C46636E718D108EF00A7F768 /* LoginViewModel.h */,
 				C46636E818D108EF00A7F768 /* LoginViewModel.m */,
+				C4A6D23018D8F885007C8A8E /* PhotoViewController.h */,
+				C4A6D23118D8F885007C8A8E /* PhotoViewController.m */,
+				C4A6D23318D90057007C8A8E /* PhotoCollectionViewController.h */,
+				C4A6D23418D90057007C8A8E /* PhotoCollectionViewController.m */,
 				C47DF62C18C648750078A8C6 /* Images.xcassets */,
 				C47DF61B18C648750078A8C6 /* Supporting Files */,
 			);
@@ -307,7 +317,9 @@
 				C47DF66918C665450078A8C6 /* LoginViewController.m in Sources */,
 				C47DF62518C648750078A8C6 /* AppDelegate.m in Sources */,
 				C46636E918D108EF00A7F768 /* LoginViewModel.m in Sources */,
+				C4A6D23518D90057007C8A8E /* PhotoCollectionViewController.m in Sources */,
 				C47DF62118C648750078A8C6 /* main.m in Sources */,
+				C4A6D23218D8F885007C8A8E /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

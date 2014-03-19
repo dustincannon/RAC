@@ -51,7 +51,7 @@
         self.statusLabel.hidden = NO;
         BOOL success = [x boolValue];
         if (success) {
-            self.statusLabel.text = @"Success!";
+            [self performSegueWithIdentifier:@"PhotoViewControllerSegue" sender:self];
         } else {
             self.statusLabel.text = @"Fail!";
         }
