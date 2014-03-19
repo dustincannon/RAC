@@ -8,9 +8,10 @@
 
 #import "PhotoViewController.h"
 #import "PhotoCollectionViewController.h"
+#import <ReactiveCocoa.h>
+#import <ReactiveCocoa/RACEXTScope.h>
 
 @interface PhotoViewController ()
-
 @end
 
 @implementation PhotoViewController
@@ -19,7 +20,9 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _photoCollectionVC = [[PhotoCollectionViewController alloc] init];
+        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+        layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
+        _photoCollectionVC = [[PhotoCollectionViewController alloc] initWithCollectionViewLayout:layout];
     }
     return self;
 }
@@ -27,7 +30,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self.photoCollectionContainerView addSubview:self.photoCollectionVC.collectionView];
+
+    @weakify(self);
+    self.uploadButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            NSLog(@"Upload Camera Roll!");
+            @strongify(self);
+            [self fetchCameraRollAssets];
+            return nil;
+        }];
+    }];
+}
+
+- (void)fetchCameraRollAssets
+{
+    [self.photoCollectionVC fetchCameraRollAssets];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,16 +54,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

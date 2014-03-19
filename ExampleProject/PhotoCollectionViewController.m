@@ -7,26 +7,23 @@
 //
 
 #import "PhotoCollectionViewController.h"
+#import <ReactiveCocoa.h>
+#import <ReactiveCocoa/RACEXTScope.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface PhotoCollectionViewController ()
-
+@property (strong, nonatomic) ALAssetsLibrary *assetsLibrary;
+@property (strong, nonatomic) NSMutableArray *cameraRollAssets;
 @end
 
 @implementation PhotoCollectionViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithCollectionViewLayout:layout];
     if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
+        _assetsLibrary = [ALAssetsLibrary new];
+        _cameraRollAssets = [NSMutableArray new];
     }
     return self;
 }
@@ -34,7 +31,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
+    
+    self.collectionView.backgroundColor = [UIColor greenColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,15 +45,69 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)fetchCameraRollAssets
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [self.cameraRollAssets removeAllObjects];
+    
+    @weakify(self);
+    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if (group) {
+            // Store assets
+            [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                @strongify(self);
+                if (result) {
+                    NSLog(@"adding asset: %@", result);
+                    [self.cameraRollAssets addObject:result];
+                } else {
+                    NSLog(@"done enumerating assets");
+                }
+            }];
+        } else {
+            // Done enumerating asset groups
+            NSLog(@"done enumerating groups");
+            [self.collectionView reloadData];
+        }
+    } failureBlock:^(NSError *error) {
+        //
+    }];
 }
-*/
+
+
+#pragma mark - Collection View Data Source methods
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.cameraRollAssets.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Fetch thumbnail for asset
+    ALAsset *asset = self.cameraRollAssets[indexPath.row];
+    UIImage *image = [UIImage imageWithCGImage:[asset thumbnail]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    
+    NSLog(@"fetching cell for indexPath: %@", indexPath);
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[UICollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    }
+    
+    if ([indexPath row] % 2) {
+        cell.backgroundColor = [UIColor grayColor];
+    } else {
+        cell.backgroundColor = [UIColor brownColor];
+    }
+    
+    imageView.frame = cell.contentView.bounds;
+    [cell.contentView addSubview:imageView];
+    
+    return cell;
+}
 
 @end

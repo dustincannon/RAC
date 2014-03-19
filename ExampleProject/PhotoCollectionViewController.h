@@ -10,4 +10,6 @@
 
 @interface PhotoCollectionViewController : UICollectionViewController
 
+- (void)fetchCameraRollAssets;
+
 @end
