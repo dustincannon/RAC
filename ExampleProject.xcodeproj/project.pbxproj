@@ -26,6 +26,10 @@
 		C47DF66918C665450078A8C6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF66818C665450078A8C6 /* LoginViewController.m */; };
 		C4A6D23218D8F885007C8A8E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A6D23118D8F885007C8A8E /* PhotoViewController.m */; };
 		C4A6D23518D90057007C8A8E /* PhotoCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A6D23418D90057007C8A8E /* PhotoCollectionViewController.m */; };
+		C4A6D23E18DA4C01007C8A8E /* PhotoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A6D23D18DA4C01007C8A8E /* PhotoUploader.m */; };
+		C4A6D23F18DA4C01007C8A8E /* PhotoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A6D23D18DA4C01007C8A8E /* PhotoUploader.m */; };
+		C4A6D24218DA5696007C8A8E /* AssetStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A6D24118DA5696007C8A8E /* AssetStore.m */; };
+		C4A6D24318DA5696007C8A8E /* AssetStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A6D24118DA5696007C8A8E /* AssetStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +74,10 @@
 		C4A6D23118D8F885007C8A8E /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		C4A6D23318D90057007C8A8E /* PhotoCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewController.h; sourceTree = "<group>"; };
 		C4A6D23418D90057007C8A8E /* PhotoCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewController.m; sourceTree = "<group>"; };
+		C4A6D23C18DA4C01007C8A8E /* PhotoUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoUploader.h; sourceTree = "<group>"; };
+		C4A6D23D18DA4C01007C8A8E /* PhotoUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoUploader.m; sourceTree = "<group>"; };
+		C4A6D24018DA5696007C8A8E /* AssetStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetStore.h; sourceTree = "<group>"; };
+		C4A6D24118DA5696007C8A8E /* AssetStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +155,10 @@
 				C4A6D23118D8F885007C8A8E /* PhotoViewController.m */,
 				C4A6D23318D90057007C8A8E /* PhotoCollectionViewController.h */,
 				C4A6D23418D90057007C8A8E /* PhotoCollectionViewController.m */,
+				C4A6D23C18DA4C01007C8A8E /* PhotoUploader.h */,
+				C4A6D23D18DA4C01007C8A8E /* PhotoUploader.m */,
+				C4A6D24018DA5696007C8A8E /* AssetStore.h */,
+				C4A6D24118DA5696007C8A8E /* AssetStore.m */,
 				C47DF62C18C648750078A8C6 /* Images.xcassets */,
 				C47DF61B18C648750078A8C6 /* Supporting Files */,
 			);
@@ -318,8 +330,10 @@
 				C47DF62518C648750078A8C6 /* AppDelegate.m in Sources */,
 				C46636E918D108EF00A7F768 /* LoginViewModel.m in Sources */,
 				C4A6D23518D90057007C8A8E /* PhotoCollectionViewController.m in Sources */,
+				C4A6D24218DA5696007C8A8E /* AssetStore.m in Sources */,
 				C47DF62118C648750078A8C6 /* main.m in Sources */,
 				C4A6D23218D8F885007C8A8E /* PhotoViewController.m in Sources */,
+				C4A6D23E18DA4C01007C8A8E /* PhotoUploader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,8 +341,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4A6D24318DA5696007C8A8E /* AssetStore.m in Sources */,
 				C46636EA18D108EF00A7F768 /* LoginViewModel.m in Sources */,
 				C46636EC18D120CA00A7F768 /* LoginViewModelTests.m in Sources */,
+				C4A6D23F18DA4C01007C8A8E /* PhotoUploader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

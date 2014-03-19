@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Cannon, Dustin. All rights reserved.
 //
 
-#import "PhotoViewController.h"
-#import "PhotoCollectionViewController.h"
 #import <ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
+
+#import "PhotoViewController.h"
+#import "PhotoCollectionViewController.h"
 
 @interface PhotoViewController ()
 @end
