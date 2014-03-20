@@ -46,6 +46,7 @@
 {
     [super viewDidLoad];
     
+    self.photoCollectionVC.collectionView.frame = self.photoCollectionContainerView.bounds;
     [self.photoCollectionContainerView addSubview:self.photoCollectionVC.collectionView];
 
     self.uploadButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {

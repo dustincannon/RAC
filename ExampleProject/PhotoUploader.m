@@ -80,7 +80,6 @@
     NSLog(@"starting upload batch");
 
     [signal subscribeNext:^(id x) {
-        NSLog(@"next: %@", x);
         [subscriber sendNext:x];
     } completed:^{
         NSLog(@"finished upload batch");
