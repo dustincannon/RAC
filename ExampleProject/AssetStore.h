@@ -14,5 +14,6 @@
 
 - (void)addAsset:(ALAsset *)asset;
 - (ALAsset *)assetAtIndex:(NSUInteger)i;
+- (NSUInteger)numAssets;
 
 @end

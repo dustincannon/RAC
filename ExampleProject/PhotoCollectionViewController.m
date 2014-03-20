@@ -75,13 +75,12 @@
         } else {
             // Done enumerating asset groups
             // Give assets to the PhotoUploader
-            RACSignal *uploadSignal = [self.photoUploader uploadSignalForAssets:self.cameraRollAssets];
+            RACSignal *uploadSignal = [self.photoUploader uploadSignalForAssets:
+                                       [NSArray arrayWithObjects:self.cameraRollAssets[0],
+                                                                 self.cameraRollAssets[1],
+                                                                 nil]];
             [[uploadSignal deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
                 @strongify(self);
-                NSLog(@"got asset: %@", x);
-                if ([[NSThread currentThread] isMainThread]) {
-                    NSLog(@"on main thread");
-                }
                 [self.assetStore addAsset:x];
                 [self.collectionView reloadData];
             } error:^(NSError *error) {
@@ -105,7 +104,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.cameraRollAssets.count;
+    return [self.assetStore numAssets];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

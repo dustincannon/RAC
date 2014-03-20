@@ -44,4 +44,11 @@
     }
 }
 
+- (NSUInteger)numAssets
+{
+    @synchronized(self) {
+        return self.assets.count;
+    }
+}
+
 @end
