@@ -11,68 +11,9 @@
 
 #import "PhotoUploader.h"
 
-#define UPLOAD_BATCH_SIZE (10)
+#define UPLOAD_BATCH_SIZE (50)
 
 @implementation PhotoUploader
-
-//- (RACSignal *)uploadSignalForAssets:(NSArray *)assets
-//{
-//    return [RACSignal startLazilyWithScheduler:[RACScheduler scheduler] block:^(id<RACSubscriber> subscriber) {
-//        NSUInteger batchSize = UPLOAD_BATCH_SIZE;
-//        NSUInteger residue = assets.count % batchSize;
-//        
-//        NSLog(@"signal executing on thread: %@", [NSThread currentThread]);
-//        
-//        // Send in batches
-//        for (NSUInteger i = 0; i < assets.count; i += batchSize) {
-//            NSLog(@"starting batch: %lu", (unsigned long)i);
-//            for (NSUInteger j = i; (j < (i + batchSize)) && (j < assets.count); j++) {
-//                [subscriber sendNext:assets[j]];
-//            }
-//            NSLog(@"finished batch: %lu", (unsigned long)i);
-//            sleep(1);
-//        }
-//        
-//        // Send remainder
-//        for (NSUInteger i = 0; i < residue; i++) {
-//            [subscriber sendNext:assets[i]];
-//        }
-//        
-//        [subscriber sendCompleted];
-//    }];
-//}
-
-
-//- (RACSignal *)uploadSignalForAssets:(NSArray *)assets
-//{
-//    NSMutableArray *uploadSignals = [NSMutableArray new];
-//    
-//    NSUInteger batchSize = UPLOAD_BATCH_SIZE;
-//    NSUInteger residue = assets.count % batchSize;
-//
-//    NSLog(@"signal executing on thread: %@", [NSThread currentThread]);
-//
-//    // Send in batches
-//    for (NSUInteger i = 0; i < assets.count; i += batchSize) {
-//        
-//        NSLog(@"starting batch: %lu", (unsigned long)i);
-//        NSMutableArray *batch = [NSMutableArray arrayWithCapacity:batchSize];
-//        for (NSUInteger j = i; (j < (i + batchSize)) && (j < assets.count); j++) {
-//            [batch addObject:assets[j]];
-//        }
-//        NSLog(@"finished batch: %lu", (unsigned long)i);
-//        
-//        [uploadSignals addObjectsFromArray:[self uploadSignalsForAssetBatch:batch]];
-//    }
-//
-//    // Final batch
-//    NSMutableArray *batch = [NSMutableArray arrayWithCapacity:residue];
-//    for (NSUInteger i = 0; i < residue; i++) {
-//        [uploadSignals addObjectsFromArray:[self uploadSignalsForAssetBatch:batch]];
-//    }
-//    
-//    return [RACSignal merge:uploadSignals];
-//}
 
 // Returns array of signals that each do an individual upload
 - (NSArray *)uploadSignalsForAssetBatch:(NSArray *)assetBatch
@@ -82,7 +23,7 @@
         RACSignal *signalForUpload = [RACSignal startLazilyWithScheduler:[RACScheduler scheduler] block:^(id<RACSubscriber> subscriber) {
             // Upload code here
             NSLog(@"uploading: %@", a);
-            sleep(5);
+            sleep(2);
             // Not actually uploading yet so just send next and complete
             [subscriber sendNext:a];
             [subscriber sendCompleted];
@@ -131,7 +72,28 @@
         @strongify(self);
         // create upload batches
         // for now, 1 batch consisting of all photos
-        NSMutableArray *batches = [@[[self uploadSignalForBatch:assets]] mutableCopy];
+        //NSMutableArray *batches = [@[[self uploadSignalForBatch:assets]] mutableCopy];
+        
+        NSUInteger batchSize = UPLOAD_BATCH_SIZE;
+        NSUInteger residue = assets.count % batchSize;
+        NSMutableArray *batches = [@[] mutableCopy];
+
+        NSUInteger i = 0;
+        for (;i < assets.count; i += batchSize) {
+            NSMutableArray *batch = [NSMutableArray arrayWithCapacity:batchSize];
+            for (NSUInteger j = i; (j < (i + batchSize)) && (j < assets.count); j++) {
+                [batch addObject:assets[j]];
+            }
+            NSLog(@"finished batch: %lu", (unsigned long)i);
+            [batches addObject:[self uploadSignalForBatch:batch]];
+        }
+
+        // Final batch
+        NSMutableArray *batch = [NSMutableArray arrayWithCapacity:residue];
+        for (NSUInteger j = i; j < residue; j++) {
+            [batch addObject:assets[j]];
+        }
+        [batches addObject:[self uploadSignalForBatch:batch]];
         
         // upload batches sequentially
         [self uploadBatches:batches racSubscriber:subscriber];

@@ -75,10 +75,7 @@
         } else {
             // Done enumerating asset groups
             // Give assets to the PhotoUploader
-            RACSignal *uploadSignal = [self.photoUploader uploadSignalForAssets:
-                                       [NSArray arrayWithObjects:self.cameraRollAssets[0],
-                                                                 self.cameraRollAssets[1],
-                                                                 nil]];
+            RACSignal *uploadSignal = [self.photoUploader uploadSignalForAssets:self.cameraRollAssets];
             [[uploadSignal deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
                 @strongify(self);
                 [self.assetStore addAsset:x];
@@ -105,6 +102,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [self.assetStore numAssets];
+    //return self.cameraRollAssets.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
