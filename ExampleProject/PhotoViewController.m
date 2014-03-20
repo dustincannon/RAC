@@ -79,13 +79,10 @@
             }];
         } else {
             // Done enumerating asset groups
-            // Give assets to the PhotoUploader
+            // Upload photos and add them to the store as the uploads complete
             RACSignal *uploadSignal = [self.photoUploader uploadSignalForAssets:self.cameraRollAssets];
-            [[uploadSignal deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-                @strongify(self);
+            [uploadSignal subscribeNext:^(id x) {
                 [self.assetStore addAsset:x];
-            } error:^(NSError *error) {
-                //
             } completed:^{
                 NSLog(@"finished with all photos");
             }];
