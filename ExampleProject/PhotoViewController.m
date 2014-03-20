@@ -8,11 +8,20 @@
 
 #import <ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 #import "PhotoViewController.h"
 #import "PhotoCollectionViewController.h"
+#import "AssetStore.h"
+#import "PhotoUploader.h"
 
 @interface PhotoViewController ()
+
+@property (strong, nonatomic) ALAssetsLibrary *assetsLibrary;
+@property (strong, nonatomic) NSMutableArray *cameraRollAssets;
+@property (strong, nonatomic) AssetStore *assetStore;
+@property (strong, nonatomic) PhotoUploader *photoUploader;
+
 @end
 
 @implementation PhotoViewController
@@ -23,7 +32,12 @@
     if (self) {
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
+        _assetsLibrary = [ALAssetsLibrary new];
+        _cameraRollAssets = [NSMutableArray new];
+        _assetStore = [AssetStore new];
+        _photoUploader = [PhotoUploader new];
         _photoCollectionVC = [[PhotoCollectionViewController alloc] initWithCollectionViewLayout:layout];
+        _photoCollectionVC.assetStore = _assetStore;
     }
     return self;
 }
@@ -47,7 +61,38 @@
 
 - (void)fetchCameraRollAssets
 {
-    [self.photoCollectionVC fetchCameraRollAssets];
+    [self.cameraRollAssets removeAllObjects];
+    
+    @weakify(self);
+    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        @strongify(self);
+        if (group) {
+            // Store assets
+            [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                @strongify(self);
+                if (result) {
+                    NSLog(@"adding asset: %@", result);
+                    [self.cameraRollAssets addObject:result];
+                } else {
+                    NSLog(@"done enumerating assets");
+                }
+            }];
+        } else {
+            // Done enumerating asset groups
+            // Give assets to the PhotoUploader
+            RACSignal *uploadSignal = [self.photoUploader uploadSignalForAssets:self.cameraRollAssets];
+            [[uploadSignal deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+                @strongify(self);
+                [self.assetStore addAsset:x];
+            } error:^(NSError *error) {
+                //
+            } completed:^{
+                NSLog(@"finished with all photos");
+            }];
+        }
+    } failureBlock:^(NSError *error) {
+        //
+    }];
 }
 
 - (void)didReceiveMemoryWarning

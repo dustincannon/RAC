@@ -16,26 +16,9 @@
 
 @interface PhotoCollectionViewController ()
 
-@property (strong, nonatomic) ALAssetsLibrary *assetsLibrary;
-@property (strong, nonatomic) NSMutableArray *cameraRollAssets;
-@property (strong, nonatomic) PhotoUploader *photoUploader;
-@property (strong, nonatomic) AssetStore *assetStore;
-
 @end
 
 @implementation PhotoCollectionViewController
-
-- (id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
-{
-    self = [super initWithCollectionViewLayout:layout];
-    if (self) {
-        _assetsLibrary = [ALAssetsLibrary new];
-        _cameraRollAssets = [NSMutableArray new];
-        _photoUploader = [PhotoUploader new];
-        _assetStore = [AssetStore new];
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -46,51 +29,12 @@
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
     
     self.collectionView.backgroundColor = [UIColor grayColor];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)fetchCameraRollAssets
-{
-    [self.cameraRollAssets removeAllObjects];
     
-    @weakify(self);
-    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        @strongify(self);
-        if (group) {
-            // Store assets
-            [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-                @strongify(self);
-                if (result) {
-                    NSLog(@"adding asset: %@", result);
-                    [self.cameraRollAssets addObject:result];
-                } else {
-                    NSLog(@"done enumerating assets");
-                }
-            }];
-        } else {
-            // Done enumerating asset groups
-            // Give assets to the PhotoUploader
-            RACSignal *uploadSignal = [self.photoUploader uploadSignalForAssets:self.cameraRollAssets];
-            [[uploadSignal deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-                @strongify(self);
-                [self.assetStore addAsset:x];
-                [self.collectionView reloadData];
-            } error:^(NSError *error) {
-                //
-            } completed:^{
-                NSLog(@"finished with all photos");
-            }];
-        }
-    } failureBlock:^(NSError *error) {
-        //
+    [[[self.assetStore assetAddedSignal] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+        NSLog(@"asset store sent: %@", x);
+        [self.collectionView reloadData];
     }];
 }
-
 
 #pragma mark - Collection View Data Source methods
 
@@ -102,7 +46,6 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [self.assetStore numAssets];
-    //return self.cameraRollAssets.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -116,12 +59,6 @@
     if (cell == nil) {
         cell = [[UICollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     }
-    
-//    if ([indexPath row] % 2) {
-//        cell.backgroundColor = [UIColor grayColor];
-//    } else {
-//        cell.backgroundColor = [UIColor brownColor];
-//    }
     
     imageView.frame = cell.contentView.bounds;
     [cell.contentView addSubview:imageView];

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Cannon, Dustin. All rights reserved.
 //
 
+#import <ReactiveCocoa.h>
+#import <ReactiveCocoa/RACEXTScope.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
 #import "AssetStore.h"
@@ -13,6 +15,7 @@
 @interface AssetStore ()
 
 @property (strong, nonatomic) NSMutableArray *assets;
+@property (strong, nonatomic) RACSubject *assetAddedSubject;
 
 @end
 
@@ -23,6 +26,7 @@
     self = [super init];
     if (self) {
         _assets = [NSMutableArray new];
+        _assetAddedSubject = [RACSubject subject];
     }
     return self;
 }
@@ -32,6 +36,12 @@
     @synchronized(self) {
         [self.assets addObject:asset];
     }
+    [self.assetAddedSubject sendNext:asset];
+}
+
+- (RACSignal *)assetAddedSignal
+{
+    return self.assetAddedSubject;
 }
 
 - (ALAsset *)assetAtIndex:(NSUInteger)i

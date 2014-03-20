@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class AssetStore;
+
 @interface PhotoCollectionViewController : UICollectionViewController
 
-- (void)fetchCameraRollAssets;
+@property (strong, nonatomic) AssetStore *assetStore;
 
 @end

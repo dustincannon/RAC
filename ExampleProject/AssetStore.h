@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @class ALAsset;
+@class RACSignal;
 
 @interface AssetStore : NSObject
 
 - (void)addAsset:(ALAsset *)asset;
 - (ALAsset *)assetAtIndex:(NSUInteger)i;
 - (NSUInteger)numAssets;
+
+- (RACSignal *)assetAddedSignal;
 
 @end
