@@ -48,15 +48,19 @@
     
     [self.photoCollectionContainerView addSubview:self.photoCollectionVC.collectionView];
 
-    @weakify(self);
     self.uploadButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             NSLog(@"Upload Camera Roll!");
-            @strongify(self);
             [self fetchCameraRollAssets];
             return nil;
         }];
     }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.photoUploader cancelUploads];
 }
 
 - (void)fetchCameraRollAssets
@@ -90,12 +94,6 @@
     } failureBlock:^(NSError *error) {
         //
     }];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

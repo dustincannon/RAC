@@ -13,5 +13,6 @@
 @interface PhotoUploader : NSObject
 
 - (RACSignal *)uploadSignalForAssets:(NSArray *)assets;
+- (void)cancelUploads;
 
 @end

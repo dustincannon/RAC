@@ -13,14 +13,39 @@
 
 #define UPLOAD_BATCH_SIZE (5)
 
+@interface PhotoUploader ()
+@property (assign, nonatomic) BOOL active;
+@end
+
 @implementation PhotoUploader
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _active = YES;
+    }
+    return self;
+}
+
+- (void)cancelUploads
+{
+    self.active = NO;
+}
 
 // Returns array of signals that each do an individual upload
 - (NSArray *)uploadSignalsForAssetBatch:(NSArray *)assetBatch
 {
     NSMutableArray *signals = [NSMutableArray new];
     for (id a in assetBatch) {
+        @weakify(self);
         RACSignal *signalForUpload = [RACSignal startLazilyWithScheduler:[RACScheduler scheduler] block:^(id<RACSubscriber> subscriber) {
+            @strongify(self);
+            if (self.active == NO) {
+                NSLog(@"cancelling upload: %@", a);
+                [subscriber sendCompleted];
+                return;
+            }
             // Upload code here
             NSLog(@"uploading: %@", a);
             sleep(2);
@@ -44,7 +69,7 @@
 // Subscribe to each signal sequentially (subscribe to next signal when the previous signal completes)
 - (void)uploadBatches:(NSMutableArray *)arrayOfSignals racSubscriber:(id<RACSubscriber>)subscriber
 {
-    if (arrayOfSignals.count == 0) {
+    if (arrayOfSignals.count == 0 || (self.active == NO)) {
         [subscriber sendCompleted];
         return;
     }
