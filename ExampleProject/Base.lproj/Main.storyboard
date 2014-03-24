@@ -51,7 +51,7 @@
                         <outlet property="passwordField" destination="bVI-CV-dQx" id="ubY-Bz-qnA"/>
                         <outlet property="signInButton" destination="jVW-MO-684" id="pSZ-0K-ya3"/>
                         <outlet property="statusLabel" destination="TnK-IL-3Vm" id="hCk-KO-2Tr"/>
-                        <segue destination="Cfn-tM-URW" kind="push" identifier="NumbersViewController" id="WzI-Ya-5iD"/>
+                        <segue destination="BWh-Eg-HGe" kind="push" identifier="PrimesViewController" id="JIz-1z-J0b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -67,7 +67,7 @@
                         <viewControllerLayoutGuide type="bottom" id="R3l-fD-aZH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yVG-0v-f9g">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y4m-nK-FB0">
@@ -111,27 +111,6 @@
             </objects>
             <point key="canvasLocation" x="2233" y="-289"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="BSt-2U-sL2">
-            <objects>
-                <tabBarController storyboardIdentifier="NumbersViewController" definesPresentationContext="YES" id="Cfn-tM-URW" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="NO1-e1-Alx"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="puX-va-XFG">
-                        <rect key="frame" x="129" y="330" width="163" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="jM8-F0-Tjk" kind="relationship" relationship="viewControllers" id="bge-94-dxr"/>
-                        <segue destination="BWh-Eg-HGe" kind="relationship" relationship="viewControllers" id="CcR-RU-irg"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ihp-Zd-vuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1483" y="38"/>
-        </scene>
         <!--Primes View Controller - primes-->
         <scene sceneID="0AV-gz-8o0">
             <objects>
@@ -141,11 +120,11 @@
                         <viewControllerLayoutGuide type="bottom" id="69T-49-vlk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6pp-l4-m1o">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sum of Primes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agD-vI-h1v">
-                                <rect key="frame" x="20" y="20" width="113" height="21"/>
+                                <rect key="frame" x="99" y="20" width="113" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -157,70 +136,67 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="is" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4r-ET-LWQ">
-                                <rect key="frame" x="20" y="91" width="29" height="21"/>
+                                <rect key="frame" x="20" y="128" width="29" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="to" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dN1-P0-4ci">
-                                <rect key="frame" x="114" y="53" width="14" height="21"/>
+                                <rect key="frame" x="20" y="91" width="14" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FvJ-ig-2GH">
-                                <rect key="frame" x="57" y="49" width="39" height="30"/>
+                                <rect key="frame" x="57" y="49" width="243" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zYE-hF-aGV">
-                                <rect key="frame" x="141" y="49" width="39" height="30"/>
+                                <rect key="frame" x="57" y="87" width="243" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6SQ-Sx-1Tx">
-                                <rect key="frame" x="276" y="90" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lfp-pN-9tr">
-                                <rect key="frame" x="119" y="125" width="82" height="30"/>
+                                <rect key="frame" x="119" y="162" width="82" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Find Primes">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L86-ko-pLz">
-                                <rect key="frame" x="42" y="91" width="226" height="21"/>
+                                <rect key="frame" x="57" y="128" width="243" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="ogZ-Ni-1D8">
-                                <rect key="frame" x="20" y="157" width="280" height="278"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5T-1f-x0L">
+                                <rect key="frame" x="20" y="200" width="280" height="284"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="Item 2" id="Omq-5M-j6x"/>
+                    <navigationItem key="navigationItem" id="5r4-oA-i3g"/>
                     <connections>
                         <outlet property="findPrimesButton" destination="Lfp-pN-9tr" id="AqC-s5-tvD"/>
                         <outlet property="fromField" destination="FvJ-ig-2GH" id="G98-yl-qmZ"/>
-                        <outlet property="primesLabel" destination="ogZ-Ni-1D8" id="E7y-sa-lkA"/>
+                        <outlet property="primesLog" destination="z5T-1f-x0L" id="9EA-Cy-Piv"/>
                         <outlet property="resultLabel" destination="L86-ko-pLz" id="1oP-zR-0WW"/>
                         <outlet property="toField" destination="zYE-hF-aGV" id="jeY-87-Iuh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zha-Nl-Zac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2233" y="364"/>
+            <point key="canvasLocation" x="1489" y="44"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VyB-eI-EnH">
