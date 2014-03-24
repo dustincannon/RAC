@@ -49,12 +49,14 @@
             
             @strongify(self);
             
+            self.latestPrime = -1;
+            
             NSInteger start = [self.from integerValue];
             NSUInteger end = [self.to integerValue];
             
             self.sumOfPrimes = 0;
             self.findPrimesSignal = [self findPrimesFrom:start to:end];
-            [[self.findPrimesSignal deliverOn:[RACScheduler scheduler]] subscribeNext:^(id x) {
+            [self.findPrimesSignal subscribeNext:^(id x) {
                 self.sumOfPrimes += [x integerValue];
             } completed:^{
                 self.result = [NSString stringWithFormat:@"%ld", self.sumOfPrimes];
@@ -69,10 +71,13 @@
 
 - (RACSignal *)findPrimesFrom:(NSInteger)start to:(NSInteger)end
 {
+    @weakify(self);
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSLog(@"finding primes in range: [%ld, %ld]", start, end);
+        @strongify(self);
         for (NSInteger i = start; i <= end; i++) {
             NSLog(@"found prime: %ld", i);
+            self.latestPrime = i;
             [subscriber sendNext:@(i)];
         }
         [subscriber sendCompleted];

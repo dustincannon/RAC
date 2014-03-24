@@ -22,6 +22,7 @@ typedef enum : NSUInteger {
 @property (strong, nonatomic) NSString *to;
 @property (strong, nonatomic) NSString *result;
 @property (assign, nonatomic) JobStatus status;
+@property (assign, nonatomic) NSInteger latestPrime;
 @property (strong, nonatomic) RACCommand *findPrimes;
 
 @end
