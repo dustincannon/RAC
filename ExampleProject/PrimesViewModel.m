@@ -73,11 +73,9 @@
 {
     @weakify(self);
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSLog(@"finding primes in range: [%ld, %ld]", start, end);
         @strongify(self);
         for (NSInteger i = start; i <= end; i++) {
             if (prime(i)) {
-                NSLog(@"found prime: %ld", i);
                 self.latestPrime = i;
                 [subscriber sendNext:@(i)];
             }
