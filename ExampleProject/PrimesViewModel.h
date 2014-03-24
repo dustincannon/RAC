@@ -8,12 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum : NSUInteger {
-    RED,
-    YELLOW,
-    GREEN,
-} JobStatus;
-
 @class RACCommand;
 
 @interface PrimesViewModel : NSObject
@@ -21,8 +15,8 @@ typedef enum : NSUInteger {
 @property (strong, nonatomic) NSString *from;
 @property (strong, nonatomic) NSString *to;
 @property (strong, nonatomic) NSString *result;
-@property (assign, nonatomic) JobStatus status;
 @property (assign, nonatomic) NSInteger latestPrime;
-@property (strong, nonatomic) RACCommand *findPrimes;
+@property (strong, nonatomic) RACCommand *sumPrimes;
+@property (strong, nonatomic) RACCommand *multiplyPrimes;
 
 @end

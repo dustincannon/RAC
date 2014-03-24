@@ -16,6 +16,7 @@
 @property (strong, nonatomic) RACSignal *enabledSignal;
 @property (strong, nonatomic) RACSignal *findPrimesSignal;
 @property (assign, nonatomic) NSInteger sumOfPrimes;
+@property (assign, nonatomic) NSInteger productOfPrimes;
 
 @end
 
@@ -38,7 +39,7 @@
     return self;
 }
 
-- (RACCommand *)findPrimes
+- (RACCommand *)sumPrimes
 {
     @weakify(self);
     RACCommand *command = [[RACCommand alloc] initWithEnabled:self.enabledSignal signalBlock:^RACSignal *(id input) {
@@ -50,13 +51,8 @@
             NSInteger start = [self.from integerValue];
             NSUInteger end = [self.to integerValue];
             
-            self.sumOfPrimes = 0;
-            self.findPrimesSignal = [self findPrimesFrom:start to:end];
-            
-            [self.findPrimesSignal subscribeNext:^(id x) {
-                self.sumOfPrimes += [x integerValue];
-            } completed:^{
-                self.result = [NSString stringWithFormat:@"%ld", self.sumOfPrimes];
+            [[self sumPrimesFrom:start to:end] subscribeNext:^(id x) {
+                self.result = [NSString stringWithFormat:@"%ld", [x integerValue]];
             }];
             [subscriber sendCompleted];
             
@@ -67,18 +63,87 @@
     return command;
 }
 
-- (RACSignal *)findPrimesFrom:(NSInteger)start to:(NSInteger)end
+- (RACCommand *)multiplyPrimes
 {
+    @weakify(self);
+    RACCommand *command = [[RACCommand alloc] initWithEnabled:self.enabledSignal signalBlock:^RACSignal *(id input) {
+        RACSignal *findPrimesSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            @strongify(self);
+            
+            self.latestPrime = -1;
+            
+            NSInteger start = [self.from integerValue];
+            NSUInteger end = [self.to integerValue];
+            
+            [[self multiplyPrimesFrom:start to:end] subscribeNext:^(id x) {
+                self.result = [NSString stringWithFormat:@"%ld", [x integerValue]];
+            }];
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
+        return findPrimesSignal;
+    }];
+    return command;
+}
+
+- (NSArray *)signalsForPrimesFrom:(NSInteger)start to:(NSUInteger)end
+{
+    NSMutableArray *arrayOfSignals = [NSMutableArray new];
+    for (NSInteger i = start; i <= end; i++) {
+        RACSignal *isPrimeSignal = [RACSignal startLazilyWithScheduler:[RACScheduler scheduler] block:^(id<RACSubscriber> subscriber) {
+            if (prime(i)) {
+                [subscriber sendNext:@(i)];
+            }
+            [subscriber sendCompleted];
+        }];
+        [arrayOfSignals addObject:isPrimeSignal];
+    }
+    return arrayOfSignals;
+}
+
+- (RACSignal *)primesFrom:(NSInteger)start to:(NSInteger)end
+{
+    NSArray *signals = [self signalsForPrimesFrom:start to:end];
+    return [RACSignal merge:signals];
+}
+
+- (RACSignal *)sumPrimesFrom:(NSInteger)start to:(NSInteger)end
+{
+    RACSignal *primes = [self primesFrom:start to:end];
     @weakify(self);
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
-        for (NSInteger i = start; i <= end; i++) {
-            if (prime(i)) {
-                self.latestPrime = i;
-                [subscriber sendNext:@(i)];
-            }
-        }
-        [subscriber sendCompleted];
+        self.sumOfPrimes = 0;
+        [primes subscribeNext:^(id x) {
+            @strongify(self);
+            self.latestPrime = [x integerValue];
+            self.sumOfPrimes += self.latestPrime;
+        } completed:^{
+            @strongify(self);
+            [subscriber sendNext:@(self.sumOfPrimes)];
+            [subscriber sendCompleted];
+        }];
+        return nil;
+    }];
+}
+
+- (RACSignal *)multiplyPrimesFrom:(NSInteger)start to:(NSInteger)end
+{
+    RACSignal *primes = [self primesFrom:start to:end];
+    @weakify(self);
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self);
+        self.productOfPrimes = 0;
+        [primes subscribeNext:^(id x) {
+            @strongify(self);
+            self.latestPrime = [x integerValue];
+            self.productOfPrimes *= self.latestPrime;
+        } completed:^{
+            @strongify(self);
+            [subscriber sendNext:@(self.productOfPrimes)];
+            [subscriber sendCompleted];
+        }];
         return nil;
     }];
 }
