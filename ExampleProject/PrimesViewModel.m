@@ -42,10 +42,10 @@
 {
     @weakify(self);
     RACCommand *command = [[RACCommand alloc] initWithEnabled:self.enabledSignal signalBlock:^RACSignal *(id input) {
-        RACSignal *findPrimesSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        RACSignal *findPrimesSignal = [RACSignal startLazilyWithScheduler:[RACScheduler scheduler]
+                                                                    block:^(id<RACSubscriber> subscriber) {
+
             @strongify(self);
-            
-            NSLog(@"executing command");
             
             self.latestPrime = -1;
             
@@ -56,8 +56,8 @@
                 self.result = [NSString stringWithFormat:@"%d", [x integerValue]];
             }];
             [subscriber sendCompleted];
-            
-            return nil;
+
+            return;
         }];
         return findPrimesSignal;
     }];
