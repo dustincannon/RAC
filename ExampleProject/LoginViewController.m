@@ -51,17 +51,11 @@
         self.statusLabel.hidden = NO;
         BOOL success = [x boolValue];
         if (success) {
-            self.statusLabel.text = @"Success!";
+            [self performSegueWithIdentifier:@"NumbersViewController" sender:self];
         } else {
             self.statusLabel.text = @"Fail!";
         }
     }];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

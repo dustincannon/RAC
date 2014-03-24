@@ -24,6 +24,9 @@
 		C47DF63618C648750078A8C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47DF61818C648750078A8C6 /* UIKit.framework */; };
 		C47DF63E18C648750078A8C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C47DF63C18C648750078A8C6 /* InfoPlist.strings */; };
 		C47DF66918C665450078A8C6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47DF66818C665450078A8C6 /* LoginViewController.m */; };
+		C4E380FD18E092CC00544961 /* PrimesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E380FC18E092CC00544961 /* PrimesViewModel.m */; };
+		C4E380FE18E092CC00544961 /* PrimesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E380FC18E092CC00544961 /* PrimesViewModel.m */; };
+		C4E3810118E09AD400544961 /* PrimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3810018E09AD400544961 /* PrimesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,10 @@
 		C47DF66F18C67E660078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		C47DF67318C680E90078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		C47DF67518C683140078A8C6 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		C4E380FB18E092CC00544961 /* PrimesViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimesViewModel.h; sourceTree = "<group>"; };
+		C4E380FC18E092CC00544961 /* PrimesViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimesViewModel.m; sourceTree = "<group>"; };
+		C4E380FF18E09AD400544961 /* PrimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimesViewController.h; sourceTree = "<group>"; };
+		C4E3810018E09AD400544961 /* PrimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +144,10 @@
 				C47DF66818C665450078A8C6 /* LoginViewController.m */,
 				C46636E718D108EF00A7F768 /* LoginViewModel.h */,
 				C46636E818D108EF00A7F768 /* LoginViewModel.m */,
+				C4E380FF18E09AD400544961 /* PrimesViewController.h */,
+				C4E3810018E09AD400544961 /* PrimesViewController.m */,
+				C4E380FB18E092CC00544961 /* PrimesViewModel.h */,
+				C4E380FC18E092CC00544961 /* PrimesViewModel.m */,
 				C47DF62C18C648750078A8C6 /* Images.xcassets */,
 				C47DF61B18C648750078A8C6 /* Supporting Files */,
 			);
@@ -305,8 +316,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C47DF66918C665450078A8C6 /* LoginViewController.m in Sources */,
+				C4E380FD18E092CC00544961 /* PrimesViewModel.m in Sources */,
 				C47DF62518C648750078A8C6 /* AppDelegate.m in Sources */,
 				C46636E918D108EF00A7F768 /* LoginViewModel.m in Sources */,
+				C4E3810118E09AD400544961 /* PrimesViewController.m in Sources */,
 				C47DF62118C648750078A8C6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,6 +330,7 @@
 			files = (
 				C46636EA18D108EF00A7F768 /* LoginViewModel.m in Sources */,
 				C46636EC18D120CA00A7F768 /* LoginViewModelTests.m in Sources */,
+				C4E380FE18E092CC00544961 /* PrimesViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
