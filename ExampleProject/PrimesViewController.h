@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *toField;
 @property (weak, nonatomic) IBOutlet UILabel *resultLabel;
 @property (weak, nonatomic) IBOutlet UIButton *findPrimesButton;
-@property (weak, nonatomic) IBOutlet UILabel *primesLabel;
+@property (weak, nonatomic) IBOutlet UITextView *primesLog;
+
 
 @end

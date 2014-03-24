@@ -31,6 +31,8 @@
     [super viewDidLoad];
     
     @weakify(self);
+    
+    [self.primesLog.layer setCornerRadius:5];
 
     [self.fromField.rac_textSignal subscribeNext:^(id x) {
         self.primesViewModel.from = x;
@@ -55,11 +57,11 @@
         @strongify(self);
         NSInteger latestPrime = [x integerValue];
         if (latestPrime == -1) {
-            self.primesLabel.text = @"";
+            self.primesLog.text = @"";
             return;
         }
-        NSString *latest = [NSString stringWithFormat:@"%ld ", latestPrime];
-        self.primesLabel.text = [self.primesLabel.text stringByAppendingString:latest];
+        NSString *latest = [NSString stringWithFormat:@"%ld, ", latestPrime];
+        self.primesLog.text = [self.primesLog.text stringByAppendingString:latest];
     }];
 }
 
