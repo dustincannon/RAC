@@ -30,10 +30,8 @@
                                                reduce:^id (NSString *from, NSString *to) {
             @strongify(self);
             if (self.from.length > 0 && self.to.length > 0) {
-                NSLog(@"enabled");
                 return @(YES);
             }
-            NSLog(@"disabled");
             return @(NO);
         }];
     }
@@ -45,8 +43,6 @@
     @weakify(self);
     RACCommand *command = [[RACCommand alloc] initWithEnabled:self.enabledSignal signalBlock:^RACSignal *(id input) {
         RACSignal *findPrimesSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-            NSLog(@"command execute!");
-            
             @strongify(self);
             
             self.latestPrime = -1;
@@ -56,12 +52,14 @@
             
             self.sumOfPrimes = 0;
             self.findPrimesSignal = [self findPrimesFrom:start to:end];
+            
             [self.findPrimesSignal subscribeNext:^(id x) {
                 self.sumOfPrimes += [x integerValue];
             } completed:^{
                 self.result = [NSString stringWithFormat:@"%ld", self.sumOfPrimes];
             }];
             [subscriber sendCompleted];
+            
             return nil;
         }];
         return findPrimesSignal;
