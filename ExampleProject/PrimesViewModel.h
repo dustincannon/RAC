@@ -17,6 +17,5 @@
 @property (strong, nonatomic) NSString *result;
 @property (assign, nonatomic) NSInteger latestPrime;
 @property (strong, nonatomic) RACCommand *sumPrimes;
-@property (strong, nonatomic) RACCommand *multiplyPrimes;
 
 @end

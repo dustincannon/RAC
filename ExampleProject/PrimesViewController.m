@@ -60,7 +60,7 @@
             self.primesLog.text = @"";
             return;
         }
-        NSString *latest = [NSString stringWithFormat:@"%ld, ", latestPrime];
+        NSString *latest = [NSString stringWithFormat:@"%d, ", latestPrime];
         self.primesLog.text = [self.primesLog.text stringByAppendingString:latest];
     }];
 }
