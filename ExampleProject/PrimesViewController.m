@@ -42,9 +42,9 @@
         self.primesViewModel.to = x;
     }];
 
-    RAC(self.resultLabel, text) = RACObserve(self.primesViewModel, result);
+    RAC(self.resultLabel, text) = [RACObserve(self.primesViewModel, result) deliverOn:[RACScheduler mainThreadScheduler]];
     
-    self.findPrimesButton.rac_command = self.primesViewModel.findPrimes;
+    self.findPrimesButton.rac_command = self.primesViewModel.sumPrimes;
     [[[self.findPrimesButton.rac_command executing] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
         if (x) {
