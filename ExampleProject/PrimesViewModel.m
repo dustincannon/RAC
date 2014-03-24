@@ -76,13 +76,49 @@
         NSLog(@"finding primes in range: [%ld, %ld]", start, end);
         @strongify(self);
         for (NSInteger i = start; i <= end; i++) {
-            NSLog(@"found prime: %ld", i);
-            self.latestPrime = i;
-            [subscriber sendNext:@(i)];
+            if (prime(i)) {
+                NSLog(@"found prime: %ld", i);
+                self.latestPrime = i;
+                [subscriber sendNext:@(i)];
+            }
         }
         [subscriber sendCompleted];
         return nil;
     }];
+}
+
+#pragma mark - Prime Number Test
+
+BOOL divides(NSInteger d, NSInteger n)
+{
+    return n % d == 0;
+}
+
+NSInteger ldf(NSInteger k, NSInteger n)
+{
+    if (divides(k, n)) {
+        return k;
+    } else if (k*k > n) {
+        return n;
+    }
+    return ldf(k + 1, n);
+}
+
+NSInteger ld(NSInteger n)
+{
+    return ldf(2, n);
+}
+
+BOOL prime(NSInteger n)
+{
+    if (n < 1) {
+        NSLog(@"error");
+        return NO;
+    }
+    if (n == 1) {
+        return NO;
+    }
+    return ld(n) == n;
 }
 
 @end
