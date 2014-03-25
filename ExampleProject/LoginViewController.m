@@ -12,9 +12,6 @@
 #import "LoginViewController.h"
 #import "LoginViewModel.h"
 
-@interface LoginViewController ()
-@end
-
 @implementation LoginViewController
 
 - (id)initWithCoder:(NSCoder *)aDecoder
