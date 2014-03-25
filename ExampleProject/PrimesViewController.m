@@ -44,15 +44,6 @@
 
     RAC(self.resultLabel, text) = [RACObserve(self.primesViewModel, result) deliverOn:[RACScheduler mainThreadScheduler]];
     
-    self.findPrimesButton.rac_command = self.primesViewModel.sumPrimes;
-    [[[self.findPrimesButton.rac_command executing] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
-        @strongify(self);
-        if (x) {
-            [self.fromField endEditing:YES];
-            [self.toField endEditing:YES];
-        }
-    }];
-    
     [[RACObserve(self.primesViewModel, latestPrime) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
         @strongify(self);
         NSInteger latestPrime = [x integerValue];
@@ -62,6 +53,15 @@
         }
         NSString *latest = [NSString stringWithFormat:@"%ld, ", (long)latestPrime];
         self.primesLog.text = [self.primesLog.text stringByAppendingString:latest];
+    }];
+    
+    self.findPrimesButton.rac_command = self.primesViewModel.sumPrimes;
+    [[[self.findPrimesButton.rac_command executing] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+        @strongify(self);
+        if (x) {
+            [self.fromField endEditing:YES];
+            [self.toField endEditing:YES];
+        }
     }];
 }
 
