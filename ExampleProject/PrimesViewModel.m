@@ -42,24 +42,20 @@
 {
     @weakify(self);
     RACCommand *command = [[RACCommand alloc] initWithEnabled:self.enabledSignal signalBlock:^RACSignal *(id input) {
-        RACSignal *findPrimesSignal = [RACSignal startLazilyWithScheduler:[RACScheduler scheduler]
-                                                                    block:^(id<RACSubscriber> subscriber) {
-
+        self.latestPrime = -1;
+        
+        NSInteger start = [self.from integerValue];
+        NSUInteger end = [self.to integerValue];
+        return [[[[self primesFrom:start to:end] doNext:^(id x) {
             @strongify(self);
-            
-            self.latestPrime = -1;
-            
-            NSInteger start = [self.from integerValue];
-            NSUInteger end = [self.to integerValue];
-            
-            [[self sumPrimesFrom:start to:end] subscribeNext:^(id x) {
-                self.result = [NSString stringWithFormat:@"%d", [x integerValue]];
-            }];
-            [subscriber sendCompleted];
+            self.latestPrime = [x integerValue];
+            self.sumOfPrimes += self.latestPrime;
+        }] doCompleted:^{
+            @strongify(self);
+            self.result = [NSString stringWithFormat:@"%ld", self.sumOfPrimes];
+        }] subscribeOn:[RACScheduler scheduler]];
 
-            return;
-        }];
-        return findPrimesSignal;
+
     }];
     return command;
 }
@@ -70,7 +66,7 @@
     for (NSInteger i = start; i <= end; i++) {
         RACSignal *isPrimeSignal = [RACSignal startLazilyWithScheduler:[RACScheduler scheduler] block:^(id<RACSubscriber> subscriber) {
             if (prime(i)) {
-                NSLog(@"found prime: %d", i);
+                NSLog(@"found prime: %ld", (long)i);
                 [subscriber sendNext:@(i)];
             }
             [subscriber sendCompleted];
@@ -82,28 +78,18 @@
 
 - (RACSignal *)primesFrom:(NSInteger)start to:(NSInteger)end
 {
-    NSArray *signals = [self signalsForPrimesFrom:start to:end];
-    return [RACSignal merge:signals];
+    return [RACSignal merge:[self signalsForPrimesFrom:start to:end]];
 }
 
 - (RACSignal *)sumPrimesFrom:(NSInteger)start to:(NSInteger)end
 {
-    RACSignal *primes = [self primesFrom:start to:end];
     @weakify(self);
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    RACSignal *primes = [[self primesFrom:start to:end] doNext:^(id x) {
         @strongify(self);
-        self.sumOfPrimes = 0;
-        [primes subscribeNext:^(id x) {
-            @strongify(self);
-            self.latestPrime = [x integerValue];
-            self.sumOfPrimes += self.latestPrime;
-        } completed:^{
-            @strongify(self);
-            [subscriber sendNext:@(self.sumOfPrimes)];
-            [subscriber sendCompleted];
-        }];
-        return nil;
+        self.latestPrime = [x integerValue];
+        self.sumOfPrimes += self.latestPrime;
     }];
+    return primes;
 }
 
 #pragma mark - Prime Number Test
