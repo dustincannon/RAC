@@ -44,8 +44,6 @@
         self.statusLabel.hidden = YES;
         self.viewModel.password = password;
     }];
-
-    self.signInButton.rac_command = self.viewModel.loginCommand;
     
     [[RACObserve(self.viewModel, loginSuccessful) skip:1] subscribeNext:^(id x) {
         @strongify(self);
@@ -57,6 +55,8 @@
             self.statusLabel.text = @"Fail!";
         }
     }];
+
+    self.signInButton.rac_command = self.viewModel.loginCommand;
 }
 
 @end
