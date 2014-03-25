@@ -47,7 +47,7 @@
         NSLog(@"executing command");
         
         NSInteger start = [self.from integerValue];
-        NSUInteger end = [self.to integerValue];
+        NSInteger end = [self.to integerValue];
         
         self.latestPrime = -1;
         self.sumOfPrimes = 0;
