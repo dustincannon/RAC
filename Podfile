@@ -1,2 +1,1 @@
 pod 'ReactiveCocoa'
-pod 'ReactiveViewModel'
