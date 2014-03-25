@@ -58,7 +58,6 @@
         NSInteger latestPrime = [x integerValue];
         if (latestPrime == -1) {
             self.primesLog.text = @"";
-
             return;
         }
         NSString *latest = [NSString stringWithFormat:@"%ld, ", (long)latestPrime];
