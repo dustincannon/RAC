@@ -58,7 +58,7 @@
             self.sumOfPrimes += self.latestPrime;
         }] doCompleted:^{
             @strongify(self);
-            self.result = [NSString stringWithFormat:@"%ld", self.sumOfPrimes];
+            self.result = [NSString stringWithFormat:@"%ld", (long)self.sumOfPrimes];
         }] subscribeOn:[RACScheduler scheduler]];
     }];
     return command;
