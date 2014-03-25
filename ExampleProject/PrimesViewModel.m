@@ -44,6 +44,8 @@
     RACCommand *command = [[RACCommand alloc] initWithEnabled:self.enabledSignal signalBlock:^RACSignal *(id input) {
         @strongify(self);
 
+        NSLog(@"executing command");
+        
         NSInteger start = [self.from integerValue];
         NSUInteger end = [self.to integerValue];
         
@@ -58,8 +60,6 @@
             @strongify(self);
             self.result = [NSString stringWithFormat:@"%ld", self.sumOfPrimes];
         }] subscribeOn:[RACScheduler scheduler]];
-
-
     }];
     return command;
 }
