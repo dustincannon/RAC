@@ -85,17 +85,6 @@
     return [RACSignal merge:[self signalsForPrimesFrom:start to:end]];
 }
 
-- (RACSignal *)sumPrimesFrom:(NSInteger)start to:(NSInteger)end
-{
-    @weakify(self);
-    RACSignal *primes = [[self primesFrom:start to:end] doNext:^(id x) {
-        @strongify(self);
-        self.latestPrime = [x integerValue];
-        self.sumOfPrimes += self.latestPrime;
-    }];
-    return primes;
-}
-
 #pragma mark - Prime Number Test
 
 BOOL divides(NSInteger d, NSInteger n)
