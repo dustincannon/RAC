@@ -42,10 +42,14 @@
 {
     @weakify(self);
     RACCommand *command = [[RACCommand alloc] initWithEnabled:self.enabledSignal signalBlock:^RACSignal *(id input) {
-        self.latestPrime = -1;
-        
+        @strongify(self);
+
         NSInteger start = [self.from integerValue];
         NSUInteger end = [self.to integerValue];
+        
+        self.latestPrime = -1;
+        self.sumOfPrimes = 0;
+        
         return [[[[self primesFrom:start to:end] doNext:^(id x) {
             @strongify(self);
             self.latestPrime = [x integerValue];
