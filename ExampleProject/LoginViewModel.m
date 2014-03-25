@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Cannon, Dustin. All rights reserved.
 //
 
-#import "LoginViewModel.h"
 #import <ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
+
+#import "LoginViewModel.h"
 
 @implementation LoginViewModel
 
@@ -51,17 +52,5 @@
     }
     return self;
 }
-
-//- (void)setEmail:(NSString *)email
-//{
-//    NSLog(@"email: %@", email);
-//    _email = email;
-//}
-//
-//- (void)setPassword:(NSString *)password
-//{
-//    NSLog(@"password: %@", password);
-//    _password = password;
-//}
 
 @end

@@ -127,13 +127,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4G-Te-QKD">
-                                <rect key="frame" x="254" y="16" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="swap">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -143,10 +136,8 @@
                     <connections>
                         <outlet property="findPrimesButton" destination="Lfp-pN-9tr" id="AqC-s5-tvD"/>
                         <outlet property="fromField" destination="FvJ-ig-2GH" id="G98-yl-qmZ"/>
-                        <outlet property="implementationLabel" destination="agD-vI-h1v" id="sUT-zB-OhX"/>
                         <outlet property="primesLog" destination="z5T-1f-x0L" id="9EA-Cy-Piv"/>
                         <outlet property="resultLabel" destination="L86-ko-pLz" id="1oP-zR-0WW"/>
-                        <outlet property="swapCommandButton" destination="J4G-Te-QKD" id="xC4-nw-RwS"/>
                         <outlet property="toField" destination="zYE-hF-aGV" id="jeY-87-Iuh"/>
                     </connections>
                 </viewController>

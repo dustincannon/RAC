@@ -15,8 +15,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *resultLabel;
 @property (weak, nonatomic) IBOutlet UIButton *findPrimesButton;
 @property (weak, nonatomic) IBOutlet UITextView *primesLog;
-@property (weak, nonatomic) IBOutlet UIButton *swapCommandButton;
-@property (weak, nonatomic) IBOutlet UILabel *implementationLabel;
-
 
 @end

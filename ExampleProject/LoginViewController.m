@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Cannon, Dustin. All rights reserved.
 //
 
-#import "LoginViewController.h"
 #import <ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
+
+#import "LoginViewController.h"
 #import "LoginViewModel.h"
 
 @interface LoginViewController ()
