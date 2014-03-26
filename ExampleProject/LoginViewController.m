@@ -6,32 +6,18 @@
 //  Copyright (c) 2014 Cannon, Dustin. All rights reserved.
 //
 
-#import <ReactiveCocoa.h>
-#import <ReactiveCocoa/RACEXTScope.h>
-#import <ReactiveCocoa/RACEXTKeyPathCoding.h>
-
 #import "LoginViewController.h"
-#import "LoginViewModel.h"
 
 @implementation LoginViewController
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.viewModel = [LoginViewModel new];
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    _emailField.delegate = self;
-    _passwordField.delegate = self;
-    _signInButton.enabled = NO;
-    _statusLabel.hidden = YES;
+
+    self.emailField.delegate = self;
+    self.passwordField.delegate = self;
+    self.signInButton.enabled = NO;
+    self.statusLabel.hidden = YES;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

@@ -8,16 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class LoginViewModel;
-
 @interface LoginViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;
-
-@property (strong, nonatomic) LoginViewModel *viewModel;
 
 - (IBAction)signIn:(id)sender;
 
