@@ -17,40 +17,27 @@
 {
     self = [super init];
     if (self) {
-        RACSignal *emailSignal = RACObserve(self, email);
-        RACSignal *passwordSignal = RACObserve(self, password);
-
-        RAC(self, loginEnabled) = [RACSignal
-                                   combineLatest:@[emailSignal, passwordSignal]
-                                   reduce:^id(NSString *email, NSString *password){
-                                       
-                                       if (([email length] > 0) && ([password length] > 0)) {
-                                           return @(YES);
-                                       }
-                                       return @(NO);
-        }];
-
-        @weakify(self);
-
-        _loginCommand = [[RACCommand alloc] initWithEnabled:RACObserve(self, loginEnabled) signalBlock:^RACSignal *(id input) {
-            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-                
-                @strongify(self);
-                
-                if ([self.email isEqualToString:@"dustin"] && [self.password isEqualToString:@"test123"]) {
-                    NSLog(@"Login Successful");
-                    self.loginSuccessful = YES;
-                } else {
-                    NSLog(@"Login Failed");
-                    self.loginSuccessful = NO;
-                }
-                [subscriber sendCompleted];
-
-                return nil;
-            }];
-        }];
+        _isLoggingIn = NO;
     }
     return self;
+}
+
+- (void)loginWithEmail:(NSString *)email
+           andPassword:(NSString *)password
+               success:(void (^)())successBlock
+               failure:(void (^)())failureBlock
+{
+    self.isLoggingIn = YES;
+    if ([email isEqualToString:@"dustin"] && [password isEqualToString:@"test123"]) {
+        if (successBlock) {
+            successBlock();
+        }
+    } else {
+        if (failureBlock) {
+            failureBlock();
+        }
+    }
+    self.isLoggingIn = NO;
 }
 
 @end

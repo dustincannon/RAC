@@ -8,15 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class RACSignal;
-@class RACCommand;
-
 @interface LoginViewModel : NSObject
 
-@property (strong, nonatomic) NSString *email;
-@property (strong, nonatomic) NSString *password;
-@property (strong, nonatomic) RACCommand *loginCommand;
-@property (assign, nonatomic) BOOL loginSuccessful;
-@property (assign, nonatomic) BOOL loginEnabled;
+@property (assign, nonatomic) BOOL isLoggingIn;
+
+- (void)loginWithEmail:(NSString *)email
+           andPassword:(NSString *)password
+               success:(void (^)())successBlock
+               failure:(void (^)())failureBlock;
 
 @end
