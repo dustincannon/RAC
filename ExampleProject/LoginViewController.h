@@ -19,4 +19,6 @@
 
 @property (strong, nonatomic) LoginViewModel *viewModel;
 
+- (IBAction)signIn:(id)sender;
+
 @end

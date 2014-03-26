@@ -28,51 +28,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-//    
-//    @weakify(self);
-//
-//    [self.emailField.rac_textSignal subscribeNext:^(NSString *email) {
-//        @strongify(self);
-//        self.statusLabel.hidden = YES;
-//        self.viewModel.email = email;
-//    }];
-//    
-//    [self.passwordField.rac_textSignal subscribeNext:^(NSString *password) {
-//        @strongify(self);
-//        self.statusLabel.hidden = YES;
-//        self.viewModel.password = password;
-//    }];
-//    
-//    [[RACObserve(self.viewModel, loginSuccessful) skip:1] subscribeNext:^(id x) {
-//        @strongify(self);
-//        self.statusLabel.hidden = NO;
-//        BOOL success = [x boolValue];
-//        if (success) {
-//            [self performSegueWithIdentifier:@"PrimesViewController" sender:self];
-//        } else {
-//            self.statusLabel.text = @"Fail!";
-//        }
-//    }];
-//
-//    self.signInButton.rac_command = self.viewModel.loginCommand;
-
     _emailField.delegate = self;
     _passwordField.delegate = self;
     _signInButton.enabled = NO;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    NSLog(@"began editing: %@", textField);
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    NSLog(@"ended editing: %@", textField);
+    _statusLabel.hidden = YES;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    self.statusLabel.hidden = YES;
+
     if (textField == self.emailField) {
         // editing email field
         if (self.passwordField.text.length > 0) {
@@ -106,9 +71,17 @@
             self.signInButton.enabled = NO;
         }
     }
-    
-    
+
     return YES;
 }
 
+- (IBAction)signIn:(id)sender
+{
+    if ([self.emailField.text isEqualToString:@"dustin"] && [self.passwordField.text isEqualToString:@"test123"]) {
+        [self performSegueWithIdentifier:@"PrimesViewController" sender:self];
+    } else {
+        self.statusLabel.text = @"Fail!";
+        self.statusLabel.hidden = NO;
+    }
+}
 @end
