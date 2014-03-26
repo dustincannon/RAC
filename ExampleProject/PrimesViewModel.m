@@ -52,6 +52,14 @@
         self.latestPrime = -1;
         self.sumOfPrimes = 0;
         
+        if (start > end) {
+            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                self.result = @"0";
+                [subscriber sendCompleted];
+                return nil;
+            }];
+        }
+        
         return [[[[self primesFrom:start to:end] doNext:^(id x) {
             @strongify(self);
             self.latestPrime = [x integerValue];
